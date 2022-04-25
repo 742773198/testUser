@@ -46,6 +46,7 @@ public class UserController extends HttpServlet {
             e.printStackTrace();
         } catch (InvocationTargetException e) {
             e.printStackTrace();
+            System.out.println(1);
         }
     }
 
