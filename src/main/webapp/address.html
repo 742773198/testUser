@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>三级联动</title>
+</head>
+<body>
+<select name="" id="sheng"></select>
+<select name="" id="shi"></select>
+<select name="" id="xian"></select>
+
+<script>
+
+    function getChildren(selectId,parentId){
+        var select = document.getElementById(selectId);
+        let xmlhttp = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject("Microsoft.XMLHTTP");
+        xmlhttp.open("GET","/testUser/address/getChildren?parentId=" + parentId,true);
+        xmlhttp.send();
+        xmlhttp.onreadystatechange = function (){
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200){
+                let result = JSON.parse(xmlhttp.responseText);
+                if (result.code == 0){
+                    select.innerHTML=""; //清空
+                    for (let i = 0; i <result.data.length; i++) {
+                        select.innerHTML += "<option>" + result
+                    }
+                }
+            }
+        }
+    }
+</script>
+</body>
+</html>
